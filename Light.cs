@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,12 +15,21 @@ namespace HomeController
             isOn = true;
             Console.WriteLine($"{name} is shining.");
         }
+        public override void TurnOff()
+        {
+            isOn = false;
+            Console.WriteLine($"{name} turned off");
+        }
 
         public override void Update(string message)
         {
             if (message.Contains("movement"))
             {
                 TurnOn();
+            }
+            else if (message.Contains("stop"))
+            {   
+                TurnOff();
             }
         }
     }
