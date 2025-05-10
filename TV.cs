@@ -1,34 +1,27 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace SmartHomeController.Classes;
 
-namespace HomeController
+public class TV : Device
 {
-    public class TV : Device
+    public TV(string name) : base(name) { }
+
+    public override void TurnOn()
     {
-        public TV(string name) : base(name) { }
+        Console.WriteLine($"{name} is turning on...");
+    }
+    public override void TurnOff()
+    {
+        Console.WriteLine($"{name} is turning off...");
+    }
 
-        public override void TurnOn()
+    public override void Update(string message)
+    {
+        if (message.Contains("night mode"))
         {
-            Console.WriteLine($"{name} is turning on...");
+            TurnOn();
         }
-        public override void TurnOff()
+        else if (message.Contains("sleep mode"))
         {
-            Console.WriteLine($"{name} is turning off...");
-        }
-
-        public override void Update(string message)
-        {
-            if (message.Contains("night mode"))
-            {
-                TurnOn();
-            }
-            else if (message.Contains("sleep mode"))
-            {
-                TurnOff();
-            }
+            TurnOff();
         }
     }
 }

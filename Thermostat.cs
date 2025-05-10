@@ -1,41 +1,34 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace SmartHomeController.Classes;
 
-namespace HomeController
+public class Thermostat : Device
 {
-    public class Thermostat : Device
+    public Thermostat(string name) : base(name) { }
+    public override void TurnOn()
     {
-        public Thermostat(string name) : base(name) { }
-        public override void TurnOn()
+        Console.WriteLine($"{Name} is working.");
+    }
+    public override void TurnOff()
+    {
+        Console.WriteLine($"{Name} is off");
+    }
+
+    public override void Update(string message)
+    {
+
+        if (message.Contains("hot"))
         {
-            Console.WriteLine($"{Name} is working.");
+            TurnOn();
+            Console.WriteLine("Enjoy cold wind!");
         }
-        public override void TurnOff()
+        else if (message.Contains("cold"))
         {
-            Console.WriteLine($"{Name} is off");
+            TurnOn();
+            Console.WriteLine("Enoy warm wind!");
+        }
+        else
+        {
+            TurnOff();
         }
 
-        public override void Update(string message)
-        {
-
-            if (message.Contains("hot"))
-            {
-                TurnOn();
-                Console.WriteLine("Enjoy cold wind!");
-            }
-            else if (message.Contains("cold"))
-            {
-                TurnOn();
-                Console.WriteLine("Enoy warm wind!");
-            }
-            else
-            {
-                TurnOff();
-            }
-
-        }
     }
 }
